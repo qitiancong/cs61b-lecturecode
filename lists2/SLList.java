@@ -8,7 +8,7 @@ public class SLList {
 		public IntNode(int i, IntNode n) {
 			item = i;
 			next = n;
-			System.out.println(size);
+			//System.out.println(size);
 		}
 	} 
 
@@ -18,13 +18,21 @@ public class SLList {
 
 	private static void lectureQuestion() {
 		SLList L = new SLList();
-		IntNode n = IntNode(5, null);
+		IntNode n = new IntNode(5, null);
 	}
 
 	/** Creates an empty SLList. */
 	public SLList() {
 		sentinel = new IntNode(63, null);
 		size = 0;
+	}
+
+	/** creates a SLList using an array of int */
+	public SLList(int[] arr_int) {
+		this();
+		for (int i = 0; i < arr_int.length; i++){
+			this.addLast(arr_int[i]);
+		}
 	}
 
 	public SLList(int x) {
@@ -57,6 +65,12 @@ public class SLList {
 
  		p.next = new IntNode(x, null);
  	}
+
+	 public void deleteFirst() {
+		 this.sentinel.next = this.sentinel.next.next;
+		 size -= 1;
+	 }
+
  	
  	/** Returns the size of the list. */
  	public int size() {
@@ -67,6 +81,14 @@ public class SLList {
  		/* Creates a list of one integer, namely 10 */
  		SLList L = new SLList();
  		L.addLast(20);
+		L.addLast(30);
  		System.out.println(L.size());
+		L.deleteFirst();
+		System.out.println(L.size());
+
+		//test second constructor
+		int[] arr_int = new int[] {1,2,3,4,5};
+		SLList int_L = new SLList(arr_int);
+		System.out.println(int_L.size());
  	}
 }
